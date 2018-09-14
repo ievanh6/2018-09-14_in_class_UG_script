@@ -13,6 +13,6 @@
 # that's the head piped into tail
 # then count the characters (the wc -m)
 # but then also subtract one because wc -m counts new lines
-expr $(head -n 2 primer_B.fasta | tail -n 1 | wc -m)
+expr $(head -n 2 "$@"| tail -n 1 | wc -m) - 1
 # Another solution woud be to use td like so
-head -n 2 primer_B.fasta | tail -n 1 | tr -d '\n' | wc -m
+head -n 2 "$@"| tail -n 1 | tr -d '\n' | wc -m
