@@ -15,10 +15,7 @@
 # but then also subtract one because wc -m counts new lines
 for file in "$@"
 do
-  expr $(head -n 2 $file | tail -n 1 | wc -m) - 1
-done
-# Another solution woud be to use td like so
-for file in "$@"
-do
-  head -n 2 $file| tail -n 1 | tr -d '\n' | wc -m
+  FILENAME=$(basename $file .fasta)
+  NUCLEOTIDE=$(expr $(head -n 2 $file | tail -n 1 | wc -m) - 1)
+  echo In $FILENAME, there are $NUCLEOTIDE nucleotides.
 done
