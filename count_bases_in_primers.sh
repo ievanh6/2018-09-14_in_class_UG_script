@@ -13,6 +13,12 @@
 # that's the head piped into tail
 # then count the characters (the wc -m)
 # but then also subtract one because wc -m counts new lines
-expr $(head -n 2 "$@"| tail -n 1 | wc -m) - 1
+for file in "$@"
+do
+  expr $(head -n 2 $file | tail -n 1 | wc -m) - 1
+done
 # Another solution woud be to use td like so
-head -n 2 "$@"| tail -n 1 | tr -d '\n' | wc -m
+for file in "$@"
+do
+  head -n 2 $file| tail -n 1 | tr -d '\n' | wc -m
+done
