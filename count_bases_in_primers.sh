@@ -15,7 +15,7 @@
 # but then also subtract one because wc -m counts new lines
 for file in "$@"
 do
-  FILENAME=$(basename $file .fasta)
-  NUCLEOTIDE=$(expr $(head -n 2 $file | tail -n 1 | wc -m) - 1)
-  echo In $FILENAME, there are $NUCLEOTIDE nucleotides.
+  FILENAME=$(basename "$file" .fasta)
+  COUNT=$(head -2 "$file" | tail -1 | tr -d '\n' | wc -m | tr -d " ")
+  echo In "$FILENAME", there are "$COUNT" nucleotides.
 done
